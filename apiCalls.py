@@ -1,7 +1,13 @@
 import requests
 import sys
 code="vanajay"
-resp=requests.get(r'https://api.github.com/users/srikanthpragada')
+
+url='https://api.github.com/users/'+code
+print(url)
+
+resp=requests.get(url)
+
+#resp=requests.get(r'https://api.github.com/users/srikanthpragada')
 if resp.status_code != 200:
    print("sorry wrong call")
    sys.exit(0)
