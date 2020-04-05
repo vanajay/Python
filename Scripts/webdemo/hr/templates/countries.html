@@ -1,0 +1,18 @@
+<html>
+	<body>
+	<h1>Countries</h1>
+        <table>
+		<tr><th style="text-align:left"> Country</th> <th>Population</th> <th> Area</th></tr>
+		{%for country in cname%}
+        
+		<tr><td>{{country.name}}</td><td>{{country.population}}</td><td>{{country.area}}</td></tr>
+		{%endfor%}
+	</table>	
+	<ul>	
+		<lh style='color:red'>Country</lh>
+		{%for country in cname %}
+		<li>{{country.name}}-{{country.population}}-{{country.area}}</li>
+	</ul>
+        {%endfor%}	
+	</body>
+</html>
