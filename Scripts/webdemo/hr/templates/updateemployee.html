@@ -1,0 +1,13 @@
+<html>
+	<body>
+		<form method="POST">
+			{% csrf_token %}
+                        Employee ID:
+			<input type="number" width="100" name="ids"><br/>
+			New Salary:
+			<input type="number" width="100px" name="salary"><br/>
+			<input type="submit" value="Submit">
+			<h3>{{message}}</h1>
+		  </form>
+	</body>
+</html>	

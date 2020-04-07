@@ -1,11 +1,24 @@
 <html>
 	<body>
-	<h1>Countries</h1>
+		<label>Population: <input type="text" id="pop">
+	<script type="text/javascript">
+		var count=0
+		{%for country in cname%}
+		count=count+{{country.population}}
+		{%endfor%}
+		 document.write(count)
+	         document.getElementById("pop").innerHTML=count
+	        </script>
+		
+		<h1>Countries Total Population:+count</h1>
+	
         <table>
-		<tr><th style="text-align:left"> Country</th> <th>Population</th> <th> Area</th></tr>
+		<tr><th style="text-align:left"> Country</th> <th>Population</th> <th> Area</th><th>Flags</th></tr>
 		{%for country in cname%}
         
-		<tr><td>{{country.name}}</td><td>{{country.population}}</td><td>{{country.area}}</td></tr>
+		<tr><td>{{country.name}}</td><td>{{country.population}}</td><td>{{country.area}}</td>
+			<td><img src="{{country.flag}}" width="20" height="20"></td>
+		</tr>
 		{%endfor%}
 	</table>	
 	<ul>	

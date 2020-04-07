@@ -7,4 +7,8 @@ urlpatterns = [
         path('index/', views.index),
         path('employees/', views.list_employees),
         path('countries/', views.countriesnandp),
+        #path('add_employee/',views.add_employee),
+        #path('update_employee', views.update_employee),
+        path('addemployee/', views.addemployee),
+        path('updateemployee/', views.updateemployee),
         ]

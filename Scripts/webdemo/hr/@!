@@ -1,0 +1,61 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+import sqlite3
+import requests
+import json
+import sys
+
+def welcome(request):
+    return HttpResponse("<h1> Welcome to HR</h1>")
+# Create your views here
+def index(request):
+    #return HttpResponse("Index page")
+    return render(request,'index.html')
+def list_employees(request):
+    con=sqlite3.connect(r"/home/gundapu/Python/sqlite-tools-linux-x86-3310100/hr.db")
+    cur=con.cursor()
+    cur.execute("select * from employees")
+    emps=cur.fetchall()
+    con.close()
+    return render(request,'list_employees.html',{"employees":emps})
+
+def countriesnandp(request):
+    total=0
+    resp=requests.get('https://restcountries.eu/rest/v2/all')
+    if resp.status_code != 200:
+        print("sorry")
+        sys.exit(1)
+    else:
+        details=resp.json()
+        print("hai")
+        print(details[0])
+        return render(request,'countries.html',{"cname":details,"totalpop":total})
+#return render(request,'countries.html', {"Countries":details})
+       
+
+def add_employee(request):
+    #if 'fullname' in request.GET:
+        fullname=request.POST.get("fullname", False)
+        job=request.POST.get("job",False)
+        print(job)
+        salary=request.POST.get("salary",False)
+        con=sqlite3.connect(r"/home/gundapu/Python/sqlite-tools-linux-x86-3310100/hr.db")
+        cur=con.cursor()
+        #cur.execute("insert into employees(fullname,salary,job) values('lakshmi','6000','hr')")
+        cur.execute("insert into employees(fullname,salary,job) values(?,?,?)",(fullname,salary,job))
+        #cur.execute("select * from employees")
+        con.commit()
+        con.close()
+        return render(request,'add_employee.html')
+    #else:
+    #    return render(request,'add_employee.html')
+
+def update_employee(request):
+    ids=request.POST.get("id",False)
+    sal=request.POST.get("salary",False)
+    con=sqlite3.connect(r"/home/gundapu/Python/sqlite-tools-linux-x86-3310100/hr.db")
+    cur=con.cursor()
+    cur.execute("update employees set salary={{sal}} where id={{ids}}")
+    cur.commit()
+    cur.close()
+

@@ -1,0 +1,17 @@
+<html>
+	<body>
+		<h1> Adding Employees</h1>
+	<form method="POST">
+		{% csrf_token %}
+	
+	FullName:<br/>
+	<input type="text" name="fullname"><br/>
+	Salary:<br/>
+
+	<input type="number" name="salary" width="100" required><br/>
+	Job:<br/>
+	<input type="text" name="job" width="100" required><br/>
+	<input type="submit" value="Submit">
+	</form>
+	</body>
+</html>
